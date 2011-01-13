@@ -4,8 +4,16 @@ import sys
 import numpy as np
 
 from scikits.learn import datasets
-from scikits.learn.metrics import precision
-from scikits.learn.metrics import recall
+def precision(y_true, y_pred):
+    true_pos = np.sum(y_true[y_pred == 1]==1)
+    false_pos = np.sum(y_true[y_pred == 1]==0)
+    return true_pos / float(true_pos + false_pos)
+def recall(y_true, y_pred):
+    true_pos = np.sum(y_true[y_pred == 1]==1)
+    false_neg = np.sum(y_true[y_pred == 0]==1)
+    return true_pos / float(true_pos + false_neg)
+
+
 
 import label_propagation
 
